@@ -38,7 +38,8 @@ Now we have the definition of the interface, to use in this project. Note: RESTl
 
 ## Create a postgres instance on Heroku
 1. Log into the Heroku account, and create a new Heroku App. For example: urbanwilddbapi. Make sure the App is in the EU jurisdiction (OR UK!!)
-2. Add a Postgres Add-on to the App (They are free!)
+2. Add a Postgres Add-on to the App (They are free!). Choose 'Hobby-dev', and provision the DB to Heroku App you just created.
+
 
 
 
