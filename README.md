@@ -18,3 +18,10 @@ Incidentally, this development has the potential for use of the geo searching ca
 1. Deploy the local NodeJS server to Heroku.
 1. Debug the RESTful interface using the Visual Studio Code HTTP plugins
 
+
+## Postgres applications
+Comprehensive list here [List](https://wiki.postgresql.org/wiki/PostgreSQL_Clients).
+Trying out [this client](https://omnidb.org/index.php?option=com_content&view=category&layout=blog&id=12&Itemid=149&lang=en)
+Web-based client, for use by students with restricted PCs: http://teampostgresql.herokuapp.com
+
+
