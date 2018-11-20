@@ -25,3 +25,8 @@ Trying out [this client](https://omnidb.org/index.php?option=com_content&view=ca
 Web-based client, for use by students with restricted PCs: http://teampostgresql.herokuapp.com
 
 
+## RESTlet
+Restlet is public. The account is available [here](https://cloud.restlet.com/apis/25850/versions/1/overview)
+The definition is [here](https://cloud.restlet.com/api/apis/25850/versions/1/swagger2?media=json)
+
+
