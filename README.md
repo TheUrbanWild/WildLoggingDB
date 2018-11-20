@@ -34,7 +34,8 @@ Now we have the definition of the interface, to use in this project. Note: RESTl
 
 ## Create a Heroku Account for Alice
 1. Create a mailbox for this purpose: alicedigitallabs+urbanwild@gmail.com
-2. Create  Heroku account in this name: 
+2. Create  Heroku account in this name: [account details here](https://github.com/CMDT/DigitalLabs_TeachingProjects/blob/master/docs/accounts/alice/accounts.md)
+
 
 
 
