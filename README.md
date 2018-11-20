@@ -39,6 +39,11 @@ Now we have the definition of the interface, to use in this project. Note: RESTl
 ## Create a postgres instance on Heroku
 1. Log into the Heroku account, and create a new Heroku App. For example: urbanwilddbapi. Make sure the App is in the EU jurisdiction (OR UK!!)
 2. Add a Postgres Add-on to the App (They are free!). Choose 'Hobby-dev', and provision the DB to Heroku App you just created.
+3. In the settings of the Heroku App, you will find the 'Config Vars' they are the environment variables which are available in the server (Dynode) instance, on which the app runs. The App can read these environment variables.
+4. In the environment variable you cn find the DATABASE_URL. This is an SQL URL, which can be used by any SQL client to login and interrogate this remote SQL instance.
+5.
+
+
 
 
 
