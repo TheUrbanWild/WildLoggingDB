@@ -36,6 +36,12 @@ Now we have the definition of the interface, to use in this project. Note: RESTl
 1. Create a mailbox for this purpose: alicedigitallabs+urbanwild@gmail.com
 2. Create  Heroku account in this name: [account details here](https://github.com/CMDT/DigitalLabs_TeachingProjects/blob/master/docs/accounts/alice/accounts.md)
 
+## Create a postgres instance on Heroku
+1. Log into the Heroku account, and create a new Heroku App. For example: urbanwilddbapi. Make sure the App is in the EU jurisdiction (OR UK!!)
+2. Add a Postgres Add-on to the App (They are free!)
+
+
+
 
 
 
