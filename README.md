@@ -32,6 +32,9 @@ The definition is [here](https://cloud.restlet.com/api/apis/25850/versions/1/swa
 Transfered to this repo [here](https://github.com/TheUrbanWild/WildLoggingDB/blob/master/documentation/restlet/swagger.yaml)  
 Now we have the definition of the interface, to use in this project. Note: RESTlet's UI is the best for creating interfaces. Well worth getting an account and using it.
 
+## Create a Heroku Account for Alice
+1. Create a mailbox for this purpose: alicedigitallabs+urbanwild@gmail.com
+2. Create  Heroku account in this name: 
 
 
 
