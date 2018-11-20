@@ -26,7 +26,14 @@ Web-based client, for use by students with restricted PCs: http://teampostgresql
 
 
 ## RESTlet
-Restlet is public. The account is available [here](https://cloud.restlet.com/apis/25850/versions/1/overview)
-The definition is [here](https://cloud.restlet.com/api/apis/25850/versions/1/swagger2?media=json)
+The Restlet API for urban wild is public.  
+The account is available [here](https://cloud.restlet.com/apis/25850/versions/1/overview)  
+The definition is [here](https://cloud.restlet.com/api/apis/25850/versions/1/swagger2?media=json)  
+Transfered to this repo [here](https://github.com/TheUrbanWild/WildLoggingDB/blob/master/documentation/restlet/swagger.yaml)  
+Now we have the definition of the interface, to use in this project. Note: RESTlet's UI is the best for creating interfaces. Well worth getting an account and using it.
+
+
+
+
 
 
