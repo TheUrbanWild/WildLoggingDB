@@ -204,3 +204,51 @@ adanac:WildLoggingDB coops$ npm --v
 14. The swagger UI is available at `http://localhost:8080/docs`
 
 15. Once you're at this point, you can check in your changes.
+
+## Deploy to Heroku
+
+While we're here, it's a good idea to explore deployment to Heroku; the app is in its generated state, so there's nothing there to confuse if something goes wrong.
+
+Heroku has a nice way of connecting your app to your GitHub repo, so you can build directly from it, whenever you want to, from whatever branch.
+
+1. Login to your Heroku account, with your project identity, and go to the 'deploy' tab:
+
+2. ![heroku deploy 1](/Users/coops/Documents/projects/WildLoggingDB/documentation/resources/heroku_deploy_1.png)
+
+3. Choose 'connect to GitHub'. This happens:
+
+4. ![heroku deploy 2](/Users/coops/Documents/projects/WildLoggingDB/documentation/resources/heroku_deploy_2.png)
+
+5. Choose 'connect to GitHub' to confirm. This happens:
+
+6. ![heroku deploy 3](/Users/coops/Documents/projects/WildLoggingDB/documentation/resources/heroku_deploy_3.png)
+
+7. Fill-in the GitHub details for the account owning your repo, and sign-in. This happens:
+
+8. ![heroku deploy 4](/Users/coops/Documents/projects/WildLoggingDB/documentation/resources/heroku_deploy_4.png)
+
+9. The left hand chooser is populated with all the GitHub personas which your login can access. The right hand search box allows you to search for repositories under that persona. Our repo is under an organisation called 'TheUrbanWild' for which we have admin access. 
+
+10. You need admin access on a repo to get premission to connect to it from the Heroku dashboard!
+
+11. Now you can type in the name of your repo, and it will search to connect to it. 
+
+12. ![heroku deploy 5](/Users/coops/Documents/projects/WildLoggingDB/documentation/resources/heroku_deploy_5.png)
+
+13. Connect to the correct repo! This happens:
+
+14. ![heroku deploy 6](/Users/coops/Documents/projects/WildLoggingDB/documentation/resources/heroku_deploy_6.png)
+
+15. The heroku dashboard is now waiting to deploy the contents of the 'master' branch of the GitHub repo.
+
+16. Deploying it, is as easy as pressing the button - except - Heroku needs to know what to build and where it is. Heroku's pretty smart; if the index.js of the NodeJS server was in the top level of the repo, it would have recognised it, and built without a problem. However, our source is in the `/code` directory. We just need to add a [file](https://devcenter.heroku.com/articles/getting-started-with-nodejs) to get it going. 
+
+17. In the root of the repo, create a file called `Procfile`
+
+18. Add the following to the `Profile`
+
+19. ```procfile
+    web: node ./code/index.js
+    ```
+
+20. Check the code in.
