@@ -17,6 +17,10 @@ Now we want to build on this experience, and show you how the RESTful API defini
 
 The result is much more useful, because we can add functionality which transforms the data, rather than just looking it up. Doing more processing on the server means that we reduce the communications traffic, and the processing done on the client.
 
+## Try this too
+
+Follow along:  it's a good way to experience all the tools and processes, while having something which is easy to test.
+
 ## Plan
 
 ### Set up identity, tools and services
@@ -140,3 +144,63 @@ We're going to remove all authentication from the interface for the time being -
 
 5. Check in the changes ()
 
+
+## Create the Server Skeleton
+
+We're going to create a NodeJS server using the API definition, using the Swagger.io tools.
+
+Before you start, check that Node and NPM are installed, and in your path.
+
+```bash
+adanac:WildLoggingDB coops$ node -v
+v8.8.1
+adanac:WildLoggingDB coops$ npm --v
+5.4.2
+```
+
+(We use Node 8, as it's in LTS)
+
+1. Go to the  [Swagger editor](https://editor.swagger.io/) 
+
+2. Upload the YAML file
+
+3. Use the menu option: Generate Server, and choose: nodejs-server
+
+4. The NodeJS code is downloaded as a .zip file.
+
+5. Put zip file in the 'code' folder of the repo, unzip, and then discard the .zip file.
+
+6. Your `/code` directory will have a directory in it called `nodejs-server`. Take the contents of this directory out and paste into the `code` directory.
+
+7. Add a .gitignore file ([here](https://github.com/github/gitignore/blob/master/Node.gitignore)) (don't forget to make sure the name of the file is actually `.gitignore`). to the `/code` directory.
+
+8. Make sure you are connected to the internet. Open a terminal in the `/code` directory, and type
+
+9. ```bash
+   npm start
+   ```
+
+10. This is an instruction to the node package manager to download all the dependencies of the application, and then start Node:
+
+11. ```bash
+    > theurbanwild@1.6.0 prestart /Users/coops/Documents/projects/WildLoggingDB/code
+    > npm install
+    
+    npm WARN deprecated formidable@1.0.17: Old versions of Formidable are not compatible with the current Node.js; Upgrade to 1.2.0 or later
+    npm notice created a lockfile as package-lock.json. You should commit this file.
+    added 147 packages in 19.259s
+    
+    > theurbanwild@1.6.0 start /Users/coops/Documents/projects/WildLoggingDB/code
+    > node index.js
+    
+    Your server is listening on port 8080 (http://localhost:8080)
+    Swagger-ui is available on http://localhost:8080/docs
+    ```
+
+12. The best thing about the swagger-generated services like this, is that they automatically come with a set of interactive docs (swagger-ui), which you can use to debug the service:
+
+13. ![swagger-ui](/Users/coops/Documents/projects/WildLoggingDB/documentation/resources/swagger_api_localhost.png)
+
+14. The swagger UI is available at `http://localhost:8080/docs`
+
+15. Once you're at this point, you can check in your changes.
