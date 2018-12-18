@@ -134,4 +134,9 @@ We're going to remove all authentication from the interface for the time being -
 
 2. Change the base URL to reflect the new Heroku app we created.
 
+3. Remove the security schemes from the API
+
+4. Export the YAML file
+
+5. Check in the changes ()
 
