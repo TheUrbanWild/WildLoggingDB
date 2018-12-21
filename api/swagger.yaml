@@ -28,62 +28,62 @@ paths:
         description: "Number of the page to retrieve. Integer value."
         required: false
         type: "string"
-        x-example: "sample $page"
+
       - name: "lat"
         in: "query"
         description: "Allows to filter the collections of result by the value of field\
           \ lat"
         required: false
         type: "string"
-        x-example: "sample lat"
+
       - name: "lon"
         in: "query"
         description: "Allows to filter the collections of result by the value of field\
           \ lon"
         required: false
         type: "string"
-        x-example: "sample lon"
+
       - name: "date"
         in: "query"
         description: "Allows to filter the collections of result by the value of field\
           \ date"
         required: false
         type: "string"
-        x-example: "sample date"
+
       - name: "id"
         in: "query"
         description: "Allows to filter the collections of result by the value of field\
           \ id"
         required: false
         type: "string"
-        x-example: "sample id"
+
       - name: "$size"
         in: "query"
         description: "Size of the page to retrieve. Integer value"
         required: false
         type: "string"
-        x-example: "sample $size"
+
       - name: "postcode"
         in: "query"
         description: "Allows to filter the collections of result by the value of field\
           \ postcode"
         required: false
         type: "string"
-        x-example: "sample postcode"
+
       - name: "thing"
         in: "query"
         description: "Allows to filter the collections of result by the value of field\
           \ thing"
         required: false
         type: "string"
-        x-example: "sample thing"
+
       - name: "$sort"
         in: "query"
         description: "Order in which to retrieve the results. Multiple sort criteria\
           \ can be passed. Example: sort=age ASC,height DESC"
         required: false
         type: "string"
-        x-example: "sample $sort"
+
       responses:
         200:
           description: "Status 200"
@@ -138,7 +138,7 @@ paths:
         description: "Identifier of the Event"
         required: true
         type: "string"
-        x-example: "sample eventid"
+
       responses:
         200:
           description: "Status 200"
@@ -168,7 +168,7 @@ paths:
         description: "Identifier of the Event"
         required: true
         type: "string"
-        x-example: "sample eventid"
+
       - in: "body"
         name: "body"
         required: true
@@ -191,7 +191,6 @@ paths:
         description: "Identifier of the Event"
         required: true
         type: "string"
-        x-example: "sample eventid"
       responses:
         200:
           description: "Status 200"
@@ -213,34 +212,34 @@ paths:
         description: "Size of the page to retrieve. Integer value"
         required: false
         type: "string"
-        x-example: "sample $size"
+
       - name: "id"
         in: "query"
         description: "Allows to filter the collections of result by the value of field\
           \ id"
         required: false
         type: "string"
-        x-example: "sample id"
+
       - name: "$sort"
         in: "query"
         description: "Order in which to retrieve the results. Multiple sort criteria\
           \ can be passed. Example: sort=age ASC,height DESC"
         required: false
         type: "string"
-        x-example: "sample $sort"
+
       - name: "name"
         in: "query"
         description: "Allows to filter the collections of result by the value of field\
           \ name"
         required: false
         type: "string"
-        x-example: "sample name"
+
       - name: "$page"
         in: "query"
         description: "Number of the page to retrieve. Integer value."
         required: false
         type: "string"
-        x-example: "sample $page"
+
       responses:
         200:
           description: "Status 200"
@@ -295,7 +294,7 @@ paths:
         description: "Identifier of the Thing"
         required: true
         type: "string"
-        x-example: "sample thingid"
+
       responses:
         200:
           description: "Status 200"
@@ -325,7 +324,7 @@ paths:
         description: "Identifier of the Thing"
         required: true
         type: "string"
-        x-example: "sample thingid"
+
       - in: "body"
         name: "body"
         required: true
@@ -348,7 +347,7 @@ paths:
         description: "Identifier of the Thing"
         required: true
         type: "string"
-        x-example: "sample thingid"
+
       responses:
         200:
           description: "Status 200"
