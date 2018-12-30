@@ -1,13 +1,21 @@
 'use strict';
 
 var fs = require('fs'),
-    path = require('path'),
-    http = require('http');
+path = require('path'),
+http = require('http');
+
+
 
 var app = require('connect')();
 var swaggerTools = require('swagger-tools');
 var jsyaml = require('js-yaml');
+var database = require('./service/database');
 var serverPort = process.env.PORT || 8080;
+var dbUrl = process.env.DATABASE_URL;
+
+
+// database connection
+database.initialise(dbUrl, true);
 
 // swaggerRouter configuration
 var options = {

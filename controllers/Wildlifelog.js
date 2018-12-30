@@ -25,7 +25,7 @@ module.exports.deleteThingsThingid = function deleteThingsThingid (req, res, nex
     });
 };
 
-module.exports.getEvents = function getEvents (req, res, next) {
+module.exports.getEvents =  function getEvents (req, res, next) {
   var $page = req.swagger.params['$page'].value;
   var lat = req.swagger.params['lat'].value;
   var lon = req.swagger.params['lon'].value;
@@ -35,13 +35,16 @@ module.exports.getEvents = function getEvents (req, res, next) {
   var postcode = req.swagger.params['postcode'].value;
   var thing = req.swagger.params['thing'].value;
   var $sort = req.swagger.params['$sort'].value;
-  Wildlifelog.getEvents($page,lat,lon,date,id,$size,postcode,thing,$sort)
+
+  
+  var response =  Wildlifelog.getEvents($page,lat,lon,date,id,$size,postcode,thing,$sort)
     .then(function (response) {
       utils.writeJson(res, response);
     })
     .catch(function (response) {
-      utils.writeJson(res, response);
+      utils.writeJson(res, utils.respondWithCode(response.statusCode, response));
     });
+
 };
 
 module.exports.getEventsEventid = function getEventsEventid (req, res, next) {
