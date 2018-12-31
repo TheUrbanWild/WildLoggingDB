@@ -142,13 +142,28 @@ exports.getThings = function($size,id,$sort,name,$page) {
  **/
 exports.getThingsThingid = function(thingid) {
   return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = "{\"id\":\"sample id\",\"name\":\"Jay\"}";
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
+    database.getThing(thingid)
+    .then(function(result){
+        if(result && result.length > 0){
+          resolve(result);
+        }else{
+          reject(errApi.create404Error("Couldn't find anthing matching the request URI."));
+        }
+    })
+    .catch(function(e){
+       switch(e.statusCode){
+         case database.errors.DATABASE_ERROR:
+         // remove database specific error - will leak information.
+         reject (errApi.create500Error("something terrible happened with the database. Sorry..."));
+         break;
+         case database.errors.INTERNAL_ERROR:
+         reject(errApi.create500Error(e.message));
+         break;
+         case database.errors.PARAMETER_ERROR:
+         reject(errApi.create400Error(e.message));
+         break;
+       }
+    })
   });
 }
 

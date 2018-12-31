@@ -202,12 +202,35 @@ var getThings = async function(id, name, $page, $size, $sort){
   return result;
 }
 
+var getThing = async function(id){
+  var result = null;
 
+  var stem = 'select * from things where';
+  var id_comp = '($1::text is null or id = $1)';
+  
+  
+
+  var query = 
+    stem + 
+    id_comp + ";"; 
+    
+
+  var parameters = [id];
+  try{
+    var response = await thePool.query(query,parameters);
+    result = response.rows;
+  }catch(e){
+    throw(createError(errors.PARAMETER_ERROR,e.message));
+  }
+
+  return result;
+}
 
   module.exports = {
     errors:errors,
     initialise: initialise,
     getEvents:getEvents,
     getEvent:getEvent,
-    getThings:getThings
+    getThings:getThings,
+    getThing,getThing
   };

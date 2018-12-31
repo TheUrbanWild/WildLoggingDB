@@ -80,7 +80,7 @@ module.exports.getThingsThingid = function getThingsThingid (req, res, next) {
       utils.writeJson(res, response);
     })
     .catch(function (response) {
-      utils.writeJson(res, response);
+      utils.writeJson(res, utils.respondWithCode(response.statusCode, response));
     });
 };
 
