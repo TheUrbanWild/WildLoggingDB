@@ -119,13 +119,7 @@ exports.getEvents = function ($page, lat, lon, date, id, $size, postcode, thing,
 exports.getEventsEventid = function (eventid) {
   return new Promise(function (resolve, reject) {
     database.getEvent(eventid)
-      .then(function (result) {
-        if (result && result.length > 0) {
-          resolve(result);
-        } else {
-          reject(errApi.create404Error("Couldn't find anthing matching the request URI."));
-        }
-      })
+      .then(resolve)
       .catch(function (e) {
         switch (e.statusCode) {
           case database.errors.DATABASE_ERROR:
@@ -185,13 +179,7 @@ exports.getThings = function ($size, id, $sort, name, $page) {
 exports.getThingsThingid = function (thingid) {
   return new Promise(function (resolve, reject) {
     database.getThing(thingid)
-      .then(function (result) {
-        if (result && result.length > 0) {
-          resolve(result);
-        } else {
-          reject(errApi.create404Error("Couldn't find anthing matching the request URI."));
-        }
-      })
+      .then(resolve)
       .catch(function (e) {
         switch (e.statusCode) {
           case database.errors.DATABASE_ERROR:
