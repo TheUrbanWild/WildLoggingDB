@@ -249,6 +249,33 @@ var getThing = async function(id){
   return result;
 }
 
+
+var deleteThing = async function(id){ 
+  var result = null;
+
+  var stem = 'delete from things where';
+  var id_comp = ' id = $1';
+  
+  var query = 
+    stem + 
+    id_comp + ";"; 
+    
+
+  var parameters = [id];
+  try{
+    // the foreign key set-up in the DB ensures we delete all associated events.
+    var response = await thePool.query(query,parameters);
+    result = response.rowCount;
+  }catch(e){
+    throw(createError(errors.PARAMETER_ERROR,e.message));
+  }
+
+  return result;
+}
+
+
+
+
   module.exports = {
     errors:errors,
     initialise: initialise,
@@ -256,5 +283,6 @@ var getThing = async function(id){
     getEvent:getEvent,
     getThings:getThings,
     getThing,getThing,
-    deleteEvent:deleteEvent
+    deleteEvent:deleteEvent,
+    deleteThing:deleteThing
   };
