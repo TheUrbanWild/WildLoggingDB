@@ -357,7 +357,6 @@ definitions:
     type: "object"
     required:
     - "date"
-    - "id"
     - "lat"
     - "lon"
     - "postcode"
@@ -391,7 +390,6 @@ definitions:
   Thing:
     type: "object"
     required:
-    - "id"
     - "name"
     properties:
       id:
