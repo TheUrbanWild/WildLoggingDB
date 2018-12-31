@@ -112,7 +112,7 @@ module.exports.postThings = function postThings (req, res, next) {
       utils.writeJson(res, response);
     })
     .catch(function (response) {
-      utils.writeJson(res, response);
+      utils.writeJson(res, utils.respondWithCode(response.statusCode, response));
     });
 };
 
