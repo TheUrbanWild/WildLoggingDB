@@ -76,13 +76,28 @@ exports.getEvents = function($page,lat,lon,date,id,$size,postcode,thing,$sort) {
  **/
 exports.getEventsEventid = function(eventid) {
   return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = "{\"id\":\"sample id\",\"postcode\":\"M1 5GD\",\"date\":1511395200000,\"thing\":\"sample thing\",\"lat\":1.1,\"lon\":1.1}";
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
+    database.getEvent(eventid)
+    .then(function(result){
+        if(result && result.length > 0){
+          resolve(result);
+        }else{
+          reject(errApi.create404Error("Couldn't find anthing matching the request URI."));
+        }
+    })
+    .catch(function(e){
+       switch(e.statusCode){
+         case database.errors.DATABASE_ERROR:
+         // remove database specific error - will leak information.
+         reject (errApi.create500Error("something terrible happened with the database. Sorry..."));
+         break;
+         case database.errors.INTERNAL_ERROR:
+         reject(errApi.create500Error(e.message));
+         break;
+         case database.errors.PARAMETER_ERROR:
+         reject(errApi.create400Error(e.message));
+         break;
+       }
+    })
   });
 }
 

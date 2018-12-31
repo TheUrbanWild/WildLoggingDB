@@ -21,6 +21,12 @@ module.exports = {
         result.message = "Bad Request: " + message;
         return result;
     },
+    create404Error:(message) => {
+        var result ={};
+        result.statusCode = 404;
+        result.message = "Not Found: " + message;
+        return result;
+    },
 
     createNotYetImplemented: (message) => {
         var result = {};
