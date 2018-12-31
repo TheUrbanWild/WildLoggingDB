@@ -3,7 +3,7 @@
 var fs = require('fs'),
 path = require('path'),
 http = require('http');
-
+var cors = require('cors');
 
 
 var app = require('connect')();
@@ -13,6 +13,12 @@ var database = require('./service/database');
 var serverPort = process.env.PORT || 8080;
 var dbUrl = process.env.DATABASE_URL;
 
+
+
+// Cross Origin Requests - must have this, as we are an API.
+// Without it, browsers running SPWAs from domains different to ours (e.g. github pages)
+// will reject HTTP requests during pre-flight check.
+app.use(cors());
 
 // database connection
 database.initialise(dbUrl, true);
