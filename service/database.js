@@ -141,10 +141,16 @@ var getEvent = async function(id){
   var parameters = [id];
   try{
     var response = await thePool.query(query,parameters);
-    result = response.rows;
+    result = response.rows[0];
+    
   }catch(e){
     throw(createError(errors.PARAMETER_ERROR,e.message));
   }
+
+  if(!result){
+    throw(createError(errors.PARAMETER_ERROR,"your id was not found"));
+  }
+
 
   return result;
 }
@@ -248,9 +254,13 @@ var getThing = async function(id){
   var parameters = [id];
   try{
     var response = await thePool.query(query,parameters);
-    result = response.rows;
+    result = response.rows[0];
   }catch(e){
     throw(createError(errors.PARAMETER_ERROR,e.message));
+  }
+
+  if(!result){
+    throw(createError(errors.PARAMETER_ERROR,"your id was not found"));
   }
 
   return result;
