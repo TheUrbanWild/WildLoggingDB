@@ -1,6 +1,13 @@
 'use strict';
 
 var { Pool } = require('pg');
+var types = require('pg').types;
+
+// see https://github.com/brianc/node-pg-types#pg-types
+// pg is returning our bigint date type as a string instead of a number.
+types.setTypeParser(20, function(val) {
+  return parseInt(val);
+});
 
 var createError = require('../utils/error').createError;
 var stall = require('../utils/stall').stall;
