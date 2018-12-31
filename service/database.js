@@ -273,6 +273,42 @@ var deleteThing = async function(id){
   return result;
 }
 
+var postThing = async function(name){ 
+  var result = null;
+
+  var query = 'INSERT INTO things("name") VALUES($1) RETURNING "id", "name";';
+    
+  var parameters = [name];
+  try{
+    // the foreign key set-up in the DB ensures we delete all associated events.
+    var response = await thePool.query(query,parameters);
+    result = response.rows[0];
+  }catch(e){
+    throw(createError(errors.PARAMETER_ERROR,e.message));
+  }
+
+  return result;
+}
+
+
+
+var postEvent = async function(date, lat, lon, postcode, thing){ 
+  var result = null;
+
+  var query = 'INSERT INTO events("date","lat","lon","postcode","thing") VALUES($1, $2 , $3, $4, $5) RETURNING "id", "date","lat","lon","postcode","thing";';
+    
+  var parameters = [date,lat,lon,postcode,thing];
+  try{
+    // the foreign key set-up in the DB ensures we delete all associated events.
+    var response = await thePool.query(query,parameters);
+    result = response.rows[0];
+  }catch(e){
+    throw(createError(errors.PARAMETER_ERROR,e.message));
+  }
+
+  return result;
+}
+
 
 
 
@@ -284,5 +320,7 @@ var deleteThing = async function(id){
     getThings:getThings,
     getThing,getThing,
     deleteEvent:deleteEvent,
-    deleteThing:deleteThing
+    deleteThing:deleteThing,
+    postEvent:postEvent,
+    postThing:postThing
   };

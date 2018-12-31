@@ -86,18 +86,28 @@ module.exports.getThingsThingid = function getThingsThingid (req, res, next) {
 
 module.exports.postEvents = function postEvents (req, res, next) {
   var body = req.swagger.params['body'].value;
-  Wildlifelog.postEvents(body)
+
+  var date = body.date || null;
+  var lat = body.lat || null;
+  var lon = body.lon || null;
+  var postcode = body.postcode || null;
+  var thing = body.thing || null;
+
+
+  Wildlifelog.postEvents(date, lat, lon, postcode, thing)
     .then(function (response) {
       utils.writeJson(res, response);
     })
     .catch(function (response) {
-      utils.writeJson(res, response);
+      utils.writeJson(res, utils.respondWithCode(response.statusCode, response));
     });
 };
 
 module.exports.postThings = function postThings (req, res, next) {
   var body = req.swagger.params['body'].value;
-  Wildlifelog.postThings(body)
+  var name = body.name || null;
+
+  Wildlifelog.postThings(name)
     .then(function (response) {
       utils.writeJson(res, response);
     })
