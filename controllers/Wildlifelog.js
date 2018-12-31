@@ -10,7 +10,7 @@ module.exports.deleteEventsEventid = function deleteEventsEventid (req, res, nex
       utils.writeJson(res, response);
     })
     .catch(function (response) {
-      utils.writeJson(res, response);
+      utils.writeJson(res, utils.respondWithCode(response.statusCode, response));
     });
 };
 

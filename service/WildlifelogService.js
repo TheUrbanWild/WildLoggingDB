@@ -13,7 +13,28 @@ var errApi = require('../utils/error')
  **/
 exports.deleteEventsEventid = function(eventid) {
   return new Promise(function(resolve, reject) {
-    resolve();
+    database.deleteEvent(eventid)
+    .then(function(result){
+        if(result){ // truthy row count > 0
+          resolve(result);
+        }else{
+          reject(errApi.create404Error("Couldn't find anthing matching the request URI."));
+        }
+    })
+    .catch(function(e){
+       switch(e.statusCode){
+         case database.errors.DATABASE_ERROR:
+         // remove database specific error - will leak information.
+         reject (errApi.create500Error("something terrible happened with the database. Sorry..."));
+         break;
+         case database.errors.INTERNAL_ERROR:
+         reject(errApi.create500Error(e.message));
+         break;
+         case database.errors.PARAMETER_ERROR:
+         reject(errApi.create400Error(e.message));
+         break;
+       }
+    })
   });
 }
 

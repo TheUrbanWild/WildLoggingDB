@@ -142,6 +142,29 @@ var getEvent = async function(id){
   return result;
 }
 
+var deleteEvent = async function(id){
+  var result = null;
+
+  var stem = 'delete from events where';
+  var id_comp = ' id = $1';
+  
+  var query = 
+    stem + 
+    id_comp + ";"; 
+    
+
+  var parameters = [id];
+  try{
+    var response = await thePool.query(query,parameters);
+    result = response.rowCount;
+  }catch(e){
+    throw(createError(errors.PARAMETER_ERROR,e.message));
+  }
+
+  return result;
+}
+
+
 
 var getThings = async function(id, name, $page, $size, $sort){
   var result = null;
@@ -232,5 +255,6 @@ var getThing = async function(id){
     getEvents:getEvents,
     getEvent:getEvent,
     getThings:getThings,
-    getThing,getThing
+    getThing,getThing,
+    deleteEvent:deleteEvent
   };
