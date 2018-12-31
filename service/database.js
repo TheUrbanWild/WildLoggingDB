@@ -59,7 +59,7 @@ var getEvents = async function(id, date, lat, lon, postcode, thing, $page, $size
   var date_comp = '($2::bigint is null or date = $2) and ';
   var lat_comp = '($3::real is null or lat = $3) and '; // practically useless. Included for completeness
   var lon_comp = '($4::real is null or lon = $4) and '; // practically useless. Included for completeness
-  var postcode_comp = "($5::text is null or postcode like $5) and ";
+  var postcode_comp = "($5::text is null or postcode ilike $5) and ";
   var thing_comp = '($6::text is null or thing = $6) ';
   
 
@@ -88,8 +88,8 @@ var getEvents = async function(id, date, lat, lon, postcode, thing, $page, $size
   }
 
   var pagination_comp = "";
-  var offset = page * size;
-  if(offset){
+  if(page && size){
+    var offset = (page-1) * size;
     pagination_comp = " OFFSET " + offset + " LIMIT " + size; 
   }
 
@@ -143,9 +143,71 @@ var getEvent = async function(id){
 }
 
 
+var getThings = async function(id, name, $page, $size, $sort){
+  var result = null;
+
+  var stem = 'select * from things where';
+  var id_comp = '($1::text is null or id = $1) and ';
+  var name_comp = '($2::text is null or name ilike $2)';
+
+
+  var page = 0;
+  var size = 0;
+  var sort = "";
+
+  if(name){
+    name = "%" + name + "%"; //wildcards addition
+  }
+
+
+  if($page){
+    try{
+      page = parseInt($page);
+    }catch(e){}
+
+  }
+  if($size){
+    try{
+      size = parseInt($size);
+    }catch(e){}
+  }
+  if($sort){
+    sort = ' order by ' + $sort; // expecting something like "name ASC". Will throw on error. 
+  }
+
+  var pagination_comp = "";
+  
+  if(page && size){
+    var offset = (page-1) * size;
+    pagination_comp = " OFFSET " + offset + " LIMIT " + size; 
+  }
+
+
+  var query = 
+    stem + 
+    id_comp +
+    name_comp +
+    sort + 
+    pagination_comp + ";"; 
+    
+
+  var parameters = [id, name];
+  try{
+    var response = await thePool.query(query,parameters);
+    result = response.rows;
+  }catch(e){
+    throw(createError(errors.PARAMETER_ERROR,e.message));
+  }
+
+  return result;
+}
+
+
+
   module.exports = {
     errors:errors,
     initialise: initialise,
     getEvents:getEvents,
-    getEvent:getEvent
+    getEvent:getEvent,
+    getThings:getThings
   };

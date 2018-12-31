@@ -59,17 +59,17 @@ module.exports.getEventsEventid = function getEventsEventid (req, res, next) {
 };
 
 module.exports.getThings = function getThings (req, res, next) {
-  var $size = req.swagger.params['$size'].value;
-  var id = req.swagger.params['id'].value;
-  var $sort = req.swagger.params['$sort'].value;
-  var name = req.swagger.params['name'].value;
-  var $page = req.swagger.params['$page'].value;
+  var $size = req.swagger.params['$size'].value || null;
+  var id = req.swagger.params['id'].value || null;
+  var $sort = req.swagger.params['$sort'].value || null;
+  var name = req.swagger.params['name'].value || null;
+  var $page = req.swagger.params['$page'].value || null;
   Wildlifelog.getThings($size,id,$sort,name,$page)
     .then(function (response) {
       utils.writeJson(res, response);
     })
     .catch(function (response) {
-      utils.writeJson(res, response);
+      utils.writeJson(res, utils.respondWithCode(response.statusCode, response));
     });
 };
 
