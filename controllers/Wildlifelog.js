@@ -117,25 +117,35 @@ module.exports.postThings = function postThings (req, res, next) {
 };
 
 module.exports.putEventsEventid = function putEventsEventid (req, res, next) {
-  var eventid = req.swagger.params['eventid'].value;
+  var id = req.swagger.params['eventid'].value;
   var body = req.swagger.params['body'].value;
-  Wildlifelog.putEventsEventid(eventid,body)
+
+  var date = body.date || null;
+  var lat = body.lat || null;
+  var lon = body.lon || null;
+  var postcode = body.postcode || null;
+  var thing = body.thing || null;
+
+
+  Wildlifelog.putEventsEventid(id, date, lat, lon, postcode, thing)
     .then(function (response) {
       utils.writeJson(res, response);
     })
     .catch(function (response) {
-      utils.writeJson(res, response);
+      utils.writeJson(res, utils.respondWithCode(response.statusCode, response));
     });
 };
 
 module.exports.putThingsThingid = function putThingsThingid (req, res, next) {
-  var thingid = req.swagger.params['thingid'].value;
+  var id = req.swagger.params['thingid'].value;
   var body = req.swagger.params['body'].value;
-  Wildlifelog.putThingsThingid(thingid,body)
+  var name = body.name || null;
+
+  Wildlifelog.putThingsThingid(id,name)
     .then(function (response) {
       utils.writeJson(res, response);
     })
     .catch(function (response) {
-      utils.writeJson(res, response);
+      utils.writeJson(res, utils.respondWithCode(response.statusCode, response));
     });
 };

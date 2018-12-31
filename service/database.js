@@ -310,7 +310,48 @@ var postEvent = async function(date, lat, lon, postcode, thing){
 }
 
 
+var putThing = async function(id, name){ 
+  var result = null;
 
+  
+  var query = 'UPDATE things SET "name"= $2::text WHERE "id"= $1::text RETURNING "id", "name";';
+
+
+  var parameters = [id,name];
+  try{
+    // the foreign key set-up in the DB ensures we delete all associated events.
+    var response = await thePool.query(query,parameters);
+    result = response.rows[0];
+
+  }catch(e){
+    throw(createError(errors.PARAMETER_ERROR,e.message));
+  }
+  if(!result){
+    throw(createError(errors.PARAMETER_ERROR,"no result: perhaps the id was incorrect."));
+  }
+  return result;
+}
+
+
+
+var putEvent = async function(id, date, lat, lon, postcode, thing){ 
+  var result = null;
+
+  var query = 'UPDATE events SET "date"= $2::bigint, "lat"= $3::real, "lon"= $4::real, "postcode"= $5::text, "thing"= $6::text WHERE "id"= $1::text RETURNING "id", "date", "lat", "lon", "postcode", "thing";';  
+  var parameters = [id,date,lat,lon,postcode,thing];
+  try{
+    // the foreign key set-up in the DB ensures we delete all associated events.
+    var response = await thePool.query(query,parameters);
+    result = response.rows[0];
+
+  }catch(e){
+    throw(createError(errors.PARAMETER_ERROR,e.message));
+  }
+  if(!result){
+    throw(createError(errors.PARAMETER_ERROR,"no result: perhaps the id was incorrect."));
+  }
+  return result;
+}
 
   module.exports = {
     errors:errors,
@@ -322,5 +363,7 @@ var postEvent = async function(date, lat, lon, postcode, thing){
     deleteEvent:deleteEvent,
     deleteThing:deleteThing,
     postEvent:postEvent,
-    postThing:postThing
+    postThing:postThing,
+    putEvent: putEvent,
+    putThing: putThing
   };
