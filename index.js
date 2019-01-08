@@ -46,8 +46,10 @@ swaggerTools.initializeMiddleware(swaggerDoc, function (middleware) {
   // Route validated requests to appropriate controller
   app.use(middleware.swaggerRouter(options));
 
-  // Serve the Swagger documents and Swagger UI
-  app.use(middleware.swaggerUi());
+    // Serve the Swagger documents and Swagger UI
+    app.use(middleware.swaggerUi(
+      {swaggerUiDir: path.join(__dirname, './swagger_spwa')}
+   ));
 
   // Start the server
   http.createServer(app).listen(serverPort, function () {

@@ -1,402 +1,422 @@
----
-swagger: "2.0"
+swagger: '2.0'
 info:
-  description: ""
-  version: "1.6.0"
-  title: "theurbanwild"
+  description: ''
+  version: 1.6.0
+  title: theurbanwild
   contact:
-    name: "alicedigitallabs@gmail.com"
-    email: "alicedigitallabs@gmail.com"
-host: "urbanwilddbapi.herokuapp.com:443"
+    name: alicedigitallabs@gmail.com
+    email: alicedigitallabs@gmail.com
+#host: 'urbanwilddbapi.herokuapp.com:443'
+host: localhost:8080
 schemes:
-- "https"
+#  - https
+  - http
 paths:
   /events/:
     get:
       tags:
-      - "wildlifelog"
-      description: "Loads a list of Event"
-      operationId: "getEvents"
+        - wildlifelog
+      description: Loads a list of Event
+      operationId: getEvents
       produces:
-      - "application/json"
-      - "application/x-yaml"
-      - "application/xml"
-      - "text/xml"
+        - application/json
+        - application/x-yaml
+        - application/xml
+        - text/xml
       parameters:
-      - name: "$page"
-        in: "query"
-        description: "Number of the page to retrieve. Integer value."
-        required: false
-        type: "string"
-
-      - name: "lat"
-        in: "query"
-        description: "Allows to filter the collections of result by the value of field\
-          \ lat"
-        required: false
-        type: "string"
-
-      - name: "lon"
-        in: "query"
-        description: "Allows to filter the collections of result by the value of field\
-          \ lon"
-        required: false
-        type: "string"
-
-      - name: "date"
-        in: "query"
-        description: "Allows to filter the collections of result by the value of field\
-          \ date"
-        required: false
-        type: "string"
-
-      - name: "id"
-        in: "query"
-        description: "Allows to filter the collections of result by the value of field\
-          \ id"
-        required: false
-        type: "string"
-
-      - name: "$size"
-        in: "query"
-        description: "Size of the page to retrieve. Integer value"
-        required: false
-        type: "string"
-
-      - name: "postcode"
-        in: "query"
-        description: "Allows to filter the collections of result by the value of field\
-          \ postcode"
-        required: false
-        type: "string"
-
-      - name: "thing"
-        in: "query"
-        description: "Allows to filter the collections of result by the value of field\
-          \ thing"
-        required: false
-        type: "string"
-
-      - name: "$sort"
-        in: "query"
-        description: "Order in which to retrieve the results. Multiple sort criteria\
-          \ can be passed. Example: sort=age ASC,height DESC"
-        required: false
-        type: "string"
-
+        - name: $page
+          in: query
+          description: Number of the page to retrieve. Integer value.
+          required: false
+          type: string
+        - name: lat
+          in: query
+          description: Allows to filter the collections of result by the value of field lat
+          required: false
+          type: string
+        - name: lon
+          in: query
+          description: Allows to filter the collections of result by the value of field lon
+          required: false
+          type: string
+        - name: date
+          in: query
+          description: >-
+            Allows to filter the collections of result by the value of field
+            date
+          required: false
+          type: string
+        - name: id
+          in: query
+          description: Allows to filter the collections of result by the value of field id
+          required: false
+          type: string
+        - name: $size
+          in: query
+          description: Size of the page to retrieve. Integer value
+          required: false
+          type: string
+        - name: postcode
+          in: query
+          description: >-
+            Allows to filter the collections of result by the value of field
+            postcode
+          required: false
+          type: string
+        - name: thing
+          in: query
+          description: >-
+            Allows to filter the collections of result by the value of field
+            thing
+          required: false
+          type: string
+        - name: $sort
+          in: query
+          description: >-
+            Order in which to retrieve the results. Multiple sort criteria can
+            be passed. Example: sort=age ASC,height DESC
+          required: false
+          type: string
       responses:
-        200:
-          description: "Status 200"
+        '200':
+          description: Status 200
           schema:
-            type: "array"
+            type: array
             items:
-              $ref: "#/definitions/Event"
-        400:
-          description: "Status 400"
-      x-swagger-router-controller: "Wildlifelog"
+              $ref: '#/definitions/Event'
+        '400':
+          description: Status 400
+      x-swagger-router-controller: Wildlifelog
     post:
       tags:
-      - "wildlifelog"
-      description: "Adds a Event"
-      operationId: "postEvents"
+        - wildlifelog
+      description: Adds a Event
+      operationId: postEvents
       consumes:
-      - "application/json"
-      - "application/x-yaml"
-      - "application/xml"
-      - "text/xml"
+        - application/json
+        - application/x-yaml
+        - application/xml
+        - text/xml
       produces:
-      - "application/json"
-      - "application/x-yaml"
-      - "application/xml"
-      - "text/xml"
+        - application/json
+        - application/x-yaml
+        - application/xml
+        - text/xml
       parameters:
-      - in: "body"
-        name: "body"
-        required: true
-        schema:
-          $ref: "#/definitions/Event"
-      responses:
-        200:
-          description: "Status 200"
+        - in: body
+          name: body
+          required: true
           schema:
-            $ref: "#/definitions/Event"
-      x-swagger-router-controller: "Wildlifelog"
-  /events/{eventid}:
+            $ref: '#/definitions/Event'
+      responses:
+        '200':
+          description: Status 200
+          schema:
+            $ref: '#/definitions/Event'
+      x-swagger-router-controller: Wildlifelog
+  '/events/{eventid}':
     get:
       tags:
-      - "wildlifelog"
-      description: "Loads a Event"
-      operationId: "getEventsEventid"
+        - wildlifelog
+      description: Loads a Event
+      operationId: getEventsEventid
       produces:
-      - "application/json"
-      - "application/x-yaml"
-      - "application/xml"
-      - "text/xml"
+        - application/json
+        - application/x-yaml
+        - application/xml
+        - text/xml
       parameters:
-      - name: "eventid"
-        in: "path"
-        description: "Identifier of the Event"
-        required: true
-        type: "string"
-
+        - name: eventid
+          in: path
+          description: Identifier of the Event
+          required: true
+          type: string
       responses:
-        200:
-          description: "Status 200"
+        '200':
+          description: Status 200
           schema:
-            $ref: "#/definitions/Event"
-        400:
-          description: "Status 400"
-      x-swagger-router-controller: "Wildlifelog"
+            $ref: '#/definitions/Event'
+        '400':
+          description: Status 400
+      x-swagger-router-controller: Wildlifelog
     put:
       tags:
-      - "wildlifelog"
-      description: "Stores a Event"
-      operationId: "putEventsEventid"
+        - wildlifelog
+      description: Stores a Event
+      operationId: putEventsEventid
       consumes:
-      - "application/json"
-      - "application/x-yaml"
-      - "application/xml"
-      - "text/xml"
+        - application/json
+        - application/x-yaml
+        - application/xml
+        - text/xml
       produces:
-      - "application/json"
-      - "application/x-yaml"
-      - "application/xml"
-      - "text/xml"
+        - application/json
+        - application/x-yaml
+        - application/xml
+        - text/xml
       parameters:
-      - name: "eventid"
-        in: "path"
-        description: "Identifier of the Event"
-        required: true
-        type: "string"
-
-      - in: "body"
-        name: "body"
-        required: true
-        schema:
-          $ref: "#/definitions/Event"
-      responses:
-        200:
-          description: "Status 200"
+        - name: eventid
+          in: path
+          description: Identifier of the Event
+          required: true
+          type: string
+        - in: body
+          name: body
+          required: true
           schema:
-            $ref: "#/definitions/Event"
-      x-swagger-router-controller: "Wildlifelog"
+            $ref: '#/definitions/Event'
+      responses:
+        '200':
+          description: Status 200
+          schema:
+            $ref: '#/definitions/Event'
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+      security:
+        - urbanwild_admin_auth:
+            - admin
+      x-swagger-router-controller: Wildlifelog
     delete:
       tags:
-      - "wildlifelog"
-      description: "Deletes a Event"
-      operationId: "deleteEventsEventid"
+        - wildlifelog
+      description: Deletes a Event
+      operationId: deleteEventsEventid
       parameters:
-      - name: "eventid"
-        in: "path"
-        description: "Identifier of the Event"
-        required: true
-        type: "string"
+        - name: eventid
+          in: path
+          description: Identifier of the Event
+          required: true
+          type: string
       responses:
-        200:
-          description: "Status 200"
-      x-swagger-router-controller: "Wildlifelog"
+        '200':
+          description: Status 200
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+      security:
+        - urbanwild_admin_auth:
+            - admin
+      x-swagger-router-controller: Wildlifelog
   /things/:
     get:
       tags:
-      - "wildlifelog"
-      description: "Loads a list of Thing"
-      operationId: "getThings"
+        - wildlifelog
+      description: Loads a list of Thing
+      operationId: getThings
       produces:
-      - "application/json"
-      - "application/x-yaml"
-      - "application/xml"
-      - "text/xml"
+        - application/json
+        - application/x-yaml
+        - application/xml
+        - text/xml
       parameters:
-      - name: "$size"
-        in: "query"
-        description: "Size of the page to retrieve. Integer value"
-        required: false
-        type: "string"
-
-      - name: "id"
-        in: "query"
-        description: "Allows to filter the collections of result by the value of field\
-          \ id"
-        required: false
-        type: "string"
-
-      - name: "$sort"
-        in: "query"
-        description: "Order in which to retrieve the results. Multiple sort criteria\
-          \ can be passed. Example: sort=age ASC,height DESC"
-        required: false
-        type: "string"
-
-      - name: "name"
-        in: "query"
-        description: "Allows to filter the collections of result by the value of field\
-          \ name"
-        required: false
-        type: "string"
-
-      - name: "$page"
-        in: "query"
-        description: "Number of the page to retrieve. Integer value."
-        required: false
-        type: "string"
-
+        - name: $size
+          in: query
+          description: Size of the page to retrieve. Integer value
+          required: false
+          type: string
+        - name: id
+          in: query
+          description: Allows to filter the collections of result by the value of field id
+          required: false
+          type: string
+        - name: $sort
+          in: query
+          description: >-
+            Order in which to retrieve the results. Multiple sort criteria can
+            be passed. Example: sort=age ASC,height DESC
+          required: false
+          type: string
+        - name: name
+          in: query
+          description: >-
+            Allows to filter the collections of result by the value of field
+            name
+          required: false
+          type: string
+        - name: $page
+          in: query
+          description: Number of the page to retrieve. Integer value.
+          required: false
+          type: string
       responses:
-        200:
-          description: "Status 200"
+        '200':
+          description: Status 200
           schema:
-            type: "array"
+            type: array
             items:
-              $ref: "#/definitions/Thing"
-        400:
-          description: "Status 400"
-      x-swagger-router-controller: "Wildlifelog"
+              $ref: '#/definitions/Thing'
+        '400':
+          description: Status 400
+      x-swagger-router-controller: Wildlifelog
     post:
       tags:
-      - "wildlifelog"
-      description: "Adds a Thing"
-      operationId: "postThings"
+        - wildlifelog
+      description: Adds a Thing
+      operationId: postThings
       consumes:
-      - "application/json"
-      - "application/x-yaml"
-      - "application/xml"
-      - "text/xml"
+        - application/json
+        - application/x-yaml
+        - application/xml
+        - text/xml
       produces:
-      - "application/json"
-      - "application/x-yaml"
-      - "application/xml"
-      - "text/xml"
+        - application/json
+        - application/x-yaml
+        - application/xml
+        - text/xml
       parameters:
-      - in: "body"
-        name: "body"
-        required: true
-        schema:
-          $ref: "#/definitions/Thing"
-      responses:
-        200:
-          description: "Status 200"
+        - in: body
+          name: body
+          required: true
           schema:
-            $ref: "#/definitions/Thing"
-      x-swagger-router-controller: "Wildlifelog"
-  /things/{thingid}:
+            $ref: '#/definitions/Thing'
+      responses:
+        '200':
+          description: Status 200
+          schema:
+            $ref: '#/definitions/Thing'
+      x-swagger-router-controller: Wildlifelog
+  '/things/{thingid}':
     get:
       tags:
-      - "wildlifelog"
-      description: "Loads a Thing"
-      operationId: "getThingsThingid"
+        - wildlifelog
+      description: Loads a Thing
+      operationId: getThingsThingid
       produces:
-      - "application/json"
-      - "application/x-yaml"
-      - "application/xml"
-      - "text/xml"
+        - application/json
+        - application/x-yaml
+        - application/xml
+        - text/xml
       parameters:
-      - name: "thingid"
-        in: "path"
-        description: "Identifier of the Thing"
-        required: true
-        type: "string"
-
+        - name: thingid
+          in: path
+          description: Identifier of the Thing
+          required: true
+          type: string
       responses:
-        200:
-          description: "Status 200"
+        '200':
+          description: Status 200
           schema:
-            $ref: "#/definitions/Thing"
-        400:
-          description: "Status 400"
-      x-swagger-router-controller: "Wildlifelog"
+            $ref: '#/definitions/Thing'
+        '400':
+          description: Status 400
+      x-swagger-router-controller: Wildlifelog
     put:
       tags:
-      - "wildlifelog"
-      description: "Stores a Thing"
-      operationId: "putThingsThingid"
+        - wildlifelog
+      description: Stores a Thing
+      operationId: putThingsThingid
       consumes:
-      - "application/json"
-      - "application/x-yaml"
-      - "application/xml"
-      - "text/xml"
+        - application/json
+        - application/x-yaml
+        - application/xml
+        - text/xml
       produces:
-      - "application/json"
-      - "application/x-yaml"
-      - "application/xml"
-      - "text/xml"
+        - application/json
+        - application/x-yaml
+        - application/xml
+        - text/xml
       parameters:
-      - name: "thingid"
-        in: "path"
-        description: "Identifier of the Thing"
-        required: true
-        type: "string"
-
-      - in: "body"
-        name: "body"
-        required: true
-        schema:
-          $ref: "#/definitions/Thing"
-      responses:
-        200:
-          description: "Status 200"
+        - name: thingid
+          in: path
+          description: Identifier of the Thing
+          required: true
+          type: string
+        - in: body
+          name: body
+          required: true
           schema:
-            $ref: "#/definitions/Thing"
-      x-swagger-router-controller: "Wildlifelog"
+            $ref: '#/definitions/Thing'
+      responses:
+        '200':
+          description: Status 200
+          schema:
+            $ref: '#/definitions/Thing'
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+      security:
+        - urbanwild_admin_auth:
+            - admin
+      x-swagger-router-controller: Wildlifelog
     delete:
       tags:
-      - "wildlifelog"
-      description: "Deletes a Thing"
-      operationId: "deleteThingsThingid"
+        - wildlifelog
+      description: Deletes a Thing
+      operationId: deleteThingsThingid
       parameters:
-      - name: "thingid"
-        in: "path"
-        description: "Identifier of the Thing"
-        required: true
-        type: "string"
-
+        - name: thingid
+          in: path
+          description: Identifier of the Thing
+          required: true
+          type: string
       responses:
-        200:
-          description: "Status 200"
-      x-swagger-router-controller: "Wildlifelog"
+        '200':
+          description: Status 200
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+      security:
+        - urbanwild_admin_auth:
+            - admin
+      x-swagger-router-controller: Wildlifelog
+securityDefinitions:
+  urbanwild_admin_auth:
+    type: oauth2
+    authorizationUrl: 'https://urbanwild.eu.auth0.com/authorize'
+    flow: implicit
+    scopes:
+      admin: Full Access
 definitions:
   Event:
-    type: "object"
+    type: object
     required:
-    - "date"
-    - "lat"
-    - "lon"
-    - "postcode"
-    - "thing"
+      - date
+      - lat
+      - lon
+      - postcode
+      - thing
     properties:
       id:
-        type: "string"
-        example: "sample id"
-        description: "Auto-generated primary key field"
+        type: string
+        example: sample id
+        description: Auto-generated primary key field
       postcode:
-        type: "string"
-        example: "M1 5GD"
+        type: string
+        example: M1 5GD
       date:
-        type: "integer"
-        format: "int64"
+        type: integer
+        format: int64
         example: 1511395200000
       thing:
-        type: "string"
-        example: "sample thing"
-        description: "This property is a reference to a Thing"
+        type: string
+        example: sample thing
+        description: This property is a reference to a Thing
       lat:
-        type: "number"
-        format: "double"
+        type: number
+        format: double
         example: 1.1
       lon:
-        type: "number"
-        format: "double"
+        type: number
+        format: double
         example: 1.1
-    example: "{\"id\":\"sample id\",\"postcode\":\"M1 5GD\",\"date\":1511395200000,\"\
-      thing\":\"sample thing\",\"lat\":1.1,\"lon\":1.1}"
+    example: >-
+      {"id":"sample id","postcode":"M1 5GD","date":1511395200000,"thing":"sample
+      thing","lat":1.1,"lon":1.1}
   Thing:
-    type: "object"
+    type: object
     required:
-    - "name"
+      - name
     properties:
       id:
-        type: "string"
-        example: "sample id"
-        description: "Auto-generated primary key field"
+        type: string
+        example: sample id
+        description: Auto-generated primary key field
       name:
-        type: "string"
-        example: "Jay"
-    example: "{\"id\":\"sample id\",\"name\":\"Jay\"}"
+        type: string
+        example: Jay
+    example: '{"id":"sample id","name":"Jay"}'
