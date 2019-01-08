@@ -27,7 +27,12 @@ module.exports = {
         result.message = "Not Found: " + message;
         return result;
     },
-
+    create401Error:(message) => {
+        var result ={};
+        result.statusCode = 401;
+        result.message = "Not authorized: " + message;
+        return result;
+    },
     createNotYetImplemented: (message) => {
         var result = {};
         result.statusCode = 500;
