@@ -6,11 +6,9 @@ info:
   contact:
     name: alicedigitallabs@gmail.com
     email: alicedigitallabs@gmail.com
-host: 'urbanwilddbapi.herokuapp.com:443'
-#host: localhost:8080
+host: localhost:8080
 schemes:
-  - https
-#  - http
+  - http
 paths:
   /events/:
     get:
