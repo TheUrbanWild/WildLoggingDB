@@ -63,10 +63,11 @@ var validate_RSA_access_token = function (token, kid, callback) {
 
 
 var hasAuthorisedScope = function (scopeString, authorisedScopes) {
-    var result = false;
+    var result = true;
     if (scopeString && scopeString.length > 0) {
+        result = false;
         var scopes = Object.keys(authorisedScopes);
-
+ 
         for (var index = 0; index < scopes.length; index++) {
             var scope = scopes[index];
             if (scopeString.indexOf(scope) != NOT_FOUND) {
